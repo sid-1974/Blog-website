@@ -68,3 +68,41 @@ function searchbtn(){
         text.innerHTML = (text.textcontent).replace(regExp,"<mark >$&</mark>");
     }
 }
+
+
+
+//Subscribe functionality----///
+
+function submitForm() {
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("email").value;
+    var phoneNumber = document.getElementById("phoneNumber").value;
+    var comments = document.getElementById("comments").value;
+
+
+    if (!firstName || !lastName || !email || !phoneNumber || !comments) {
+        alert("Please fill in all the required fields.");
+        return; 
+    }
+
+    emailjs.init("ey_vygQe3L1TduuuO"); 
+
+    
+    var templateParams = {
+         to_name: "Siddarth",
+         from_name:  firstName + " " + lastName,
+         email: email,
+         phone: phoneNumber,
+         message: comments
+};
+
+
+    emailjs.send("service_3w1pquk", "template_ir547d8", templateParams)
+        .then(function(response) {
+            alert('Comments submitted successfully!');
+        }, function(error) {
+            console.error('Error:', error);
+            alert('Comments submission failed!');
+        });
+}

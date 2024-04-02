@@ -18,21 +18,21 @@
     <div class="container form__section-container">
         <h2>Subscribe Here..!</h2>
         
-        <form action=""  enctype="multipart/form-data">
-            <input type="text" placeholder="First Name">
-            <input type="text" placeholder="Last Name">
-          <!---- <input type="text" placeholder="Username">-->
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder=" Number">
-            <!---- <input type="password" placeholder="Confirm password">-->
+        <form id="subscribeForm" enctype="multipart/form-data">
+            <input id="firstName" type="text" placeholder="First Name" required>
+            <input id="lastName" type="text" placeholder="Last Name" required>
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="phoneNumber" type="text" placeholder=" Number" required>
             <div class="form__control">
-              <!---  <label for="avatar">User Avatar</label>--->
-                <textarea name="" id="" cols="30" rows="10" placeholder="Add Your Comments..!"></textarea>
+                <textarea id="comments" cols="30" rows="10" placeholder="Add Your Comments..!" required></textarea>
             </div>
-            <button type="submit"  class="btn">Subscribe</button>
-           
+            <button type="button" class="btn" onclick="submitForm()">Subscribe</button>
         </form>
     </div>
 </section>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="main.js"></script>
+
 </body>
 </html>
