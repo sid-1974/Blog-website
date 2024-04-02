@@ -42,34 +42,33 @@
 
     <!----=======NAv close=======-->
     
- <section class="form__section">
-    <div class="container form__section-container">
-        <h2>Add Post</h2>
-        
-        <form action=""  enctype="multipart/form-data">
-            <input type="text" placeholder="Title">
-            <select >
-                <option value="1">Travel</option>
-                <option value="1">Wild Life</option>
-                <option value="1">Art</option>
-                <option value="1">scienes and Technology</option>
-                <option value="1">Food</option>
-                <option value="1">Music</option>
-            </select>
-            <textarea  rows="10" placeholder="Body"></textarea>
-            <div class="form__control  inline" >
-                <input type="checkbox"  id="is_featured" checked>
-                <label for="is_featured" >Featured</label>
-            </div>
-            <div class="form__control">
-                <label for="thumbnail">Add Thumbnail</label>
-                <input type="file"  id="thumbnail">
-            </div>
-            <button type="submit"  class="btn">Add Post</button>
+    <section class="form__section">
+        <div class="container form__section-container">
+            <h2>Add Post</h2>
             
-        </form>
-    </div>
-</section>
+            <form id="postForm" enctype="multipart/form-data">
+                <input id="title" type="text" placeholder="Title">
+                <select id="category">
+                    <option value="travel">Travel</option>
+                    <option value="wildlife">Wild Life</option>
+                    <option value="art">Art</option>
+                    <option value="science">Science and Technology</option>
+                    <option value="food">Food</option>
+                    <option value="music">Music</option>
+                </select>
+                <textarea id="body" rows="10" placeholder="Body"></textarea>
+                <div class="form__control  inline" >
+                    <input type="checkbox" id="is_featured" checked>
+                    <label for="is_featured">Featured</label>
+                </div>
+                <div class="form__control">
+                    <label for="thumbnail">Add Thumbnail</label>
+                    <input type="file" id="thumbnail">
+                </div>
+                <button type="button" class="btn" onclick="addPost()">Add Post</button>
+            </form>
+        </div>
+    </section>
 
 
 <footer>
@@ -131,6 +130,29 @@
         <small>Copyright &copy; 2023 LAZY GANG</small>
     </div>
 </footer>
+<script>
+    function addPost() {
+        var title = document.getElementById("title").value;
+        var category = document.getElementById("category").value;
+        var body = document.getElementById("body").value;
+        var isFeatured = document.getElementById("is_featured").checked;
+        var thumbnail = document.getElementById("thumbnail").files[0];
+
+        // Create a FormData object to store form data
+        var formData = new FormData();
+        formData.append("title", title);
+        formData.append("category", category);
+        formData.append("body", body);
+        formData.append("is_featured", isFeatured);
+        formData.append("thumbnail", thumbnail);
+
+        // Convert FormData object to query string
+        var queryString = new URLSearchParams(formData).toString();
+
+        // Redirect to the appropriate category page with query string
+        window.location.href = category + ".html?" + queryString;
+    }
+</script>
 
 <script src="./main.js"></script>
 
