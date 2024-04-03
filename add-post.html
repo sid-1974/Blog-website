@@ -50,11 +50,11 @@
                 <input id="title" type="text" placeholder="Title">
                 <select id="category">
                     <option value="travel">Travel</option>
-                    <option value="wildlife">Wild Life</option>
+                    <option value="books">Books</option>
                     <option value="art">Art</option>
-                    <option value="science">Science and Technology</option>
+                    <option value="freinds">Friends</option>
                     <option value="food">Food</option>
-                    <option value="music">Music</option>
+                    <option value="movies">Movies</option>
                 </select>
                 <textarea id="body" rows="10" placeholder="Body"></textarea>
                 <div class="form__control  inline" >
@@ -133,28 +133,45 @@
 <script>
     function addPost() {
         var title = document.getElementById("title").value;
-        var category = document.getElementById("category").value;
         var body = document.getElementById("body").value;
-        var isFeatured = document.getElementById("is_featured").checked;
         var thumbnail = document.getElementById("thumbnail").files[0];
 
-        // Create a FormData object to store form data
-        var formData = new FormData();
-        formData.append("title", title);
-        formData.append("category", category);
-        formData.append("body", body);
-        formData.append("is_featured", isFeatured);
-        formData.append("thumbnail", thumbnail);
+        // Create post container
+        var postContainer = document.createElement('article');
+        postContainer.classList.add('post');
 
-        // Convert FormData object to query string
-        var queryString = new URLSearchParams(formData).toString();
+        // Add post HTML content
+        postContainer.innerHTML = `
+            <div class="post__thumbnail">
+                <img src="${URL.createObjectURL(thumbnail)}" alt="Post Thumbnail">
+            </div>
+            <div class="post__info">
+                <h3 class="post__title">${title}</h3>
+                <p class="post__body">${body}</p>
+                <button class="btn"><a href="friends-1.html">Learn more</a></button>
+                <div class="post__author">
+                    <div class="post__author-avatar">
+                        <img src="./images/avatar1.jpg" >
+                    </div>
+                    <div class="post__author-info">
+                        <h5>By: LAZY GANG</h5>
+                        <small>Jul-10, 2023 - 10:23</small>
+                    </div>
+                </div>
+            </div>
+        `;
 
-        // Redirect to the appropriate category page with query string
-        window.location.href = category + ".html?" + queryString;
+        // Append post to posts container
+        var postsContainer = document.getElementById('postsContainer');
+        postsContainer.appendChild(postContainer);
+
+        // Add additional classes for styling
+        postContainer.querySelector('.post__thumbnail').classList.add('featured');
+        postContainer.querySelector('.post__author').classList.add('featured');
     }
 </script>
 
-<script src="./main.js"></script>
+<script src="smain.js"></script>
 
 </body>
 </html>
