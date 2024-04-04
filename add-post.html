@@ -133,37 +133,55 @@
 
 <script>
     function addPost() {
-    // Retrieve values from the form
-    var title = document.getElementById("title").value;
-    var category = document.getElementById("category").value;
-    var body = document.getElementById("body").value;
-    var isFeatured = document.getElementById("is_featured").checked;
-    var thumbnail = document.getElementById("thumbnail").files[0]; // Assuming only one file is selected
+        // Retrieve values from the form
+        var title = document.getElementById("title").value;
+        var category = document.getElementById("category").value;
+        var body = document.getElementById("body").value;
+        var isFeatured = document.getElementById("is_featured").checked;
+        var thumbnail = document.getElementById("thumbnail").files[0]; // Assuming only one file is selected
 
-    // Create an object to hold post details
-    var post = {
-        title: title,
-        category: category,
-        body: body,
-        isFeatured: isFeatured
-    };
+        // Create an object to hold post details
+        var post = {
+            title: title,
+            category: category,
+            body: body,
+            isFeatured: isFeatured
+        };
 
-    // Convert the post object to JSON
-    var postJSON = JSON.stringify(post);
+        // Convert the post object to JSON
+        var postJSON = JSON.stringify(post);
 
-    // Store the post JSON in local storage with the category as the key
-    localStorage.setItem(category, postJSON);
+        // Store the post JSON in local storage with the category as the key
+        localStorage.setItem(category, postJSON);
 
-    // Redirect to the travel.html page with the post data as URL parameters
-    window.location.href = "travel.html?post=" + encodeURIComponent(postJSON);
-    window.location.href = "books.html?post=" + encodeURIComponent(postJSON);
-    window.location.href = "freinds.html?post=" + encodeURIComponent(postJSON);
-    window.location.href = "movies.html?post=" + encodeURIComponent(postJSON);
-    window.location.href = "art.html?post=" + encodeURIComponent(postJSON);
-    window.location.href = "food.html?post=" + encodeURIComponent(postJSON);
-}
-
+        // Redirect to the corresponding page based on the selected category
+        switch (category) {
+            case "travel":
+                window.location.href = "travel.html?post=" + encodeURIComponent(postJSON);
+                break;
+            case "books":
+                window.location.href = "books.html?post=" + encodeURIComponent(postJSON);
+                break;
+            case "friends":
+                window.location.href = "friends.html?post=" + encodeURIComponent(postJSON);
+                break;
+            case "movies":
+                window.location.href = "movies.html?post=" + encodeURIComponent(postJSON);
+                break;
+            case "art":
+                window.location.href = "art.html?post=" + encodeURIComponent(postJSON);
+                break;
+            case "food":
+                window.location.href = "food.html?post=" + encodeURIComponent(postJSON);
+                break;
+            default:
+                // Redirect to a default page if no matching category is found
+                window.location.href = "index.html";
+                break;
+        }
+    }
 </script>
+
 <script src="smain.js"></script>
 
 </body>
