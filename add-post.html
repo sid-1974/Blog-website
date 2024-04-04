@@ -130,47 +130,35 @@
         <small>Copyright &copy; 2023 LAZY GANG</small>
     </div>
 </footer>
+
 <script>
     function addPost() {
-        var title = document.getElementById("title").value;
-        var body = document.getElementById("body").value;
-        var thumbnail = document.getElementById("thumbnail").files[0];
+    // Retrieve values from the form
+    var title = document.getElementById("title").value;
+    var category = document.getElementById("category").value;
+    var body = document.getElementById("body").value;
+    var isFeatured = document.getElementById("is_featured").checked;
+    var thumbnail = document.getElementById("thumbnail").files[0]; // Assuming only one file is selected
 
-        // Create post container
-        var postContainer = document.createElement('article');
-        postContainer.classList.add('post');
+    // Create an object to hold post details
+    var post = {
+        title: title,
+        category: category,
+        body: body,
+        isFeatured: isFeatured
+    };
 
-        // Add post HTML content
-        postContainer.innerHTML = `
-            <div class="post__thumbnail">
-                <img src="${URL.createObjectURL(thumbnail)}" alt="Post Thumbnail">
-            </div>
-            <div class="post__info">
-                <h3 class="post__title">${title}</h3>
-                <p class="post__body">${body}</p>
-                <button class="btn"><a href="friends-1.html">Learn more</a></button>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar1.jpg" >
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: LAZY GANG</h5>
-                        <small>Jul-10, 2023 - 10:23</small>
-                    </div>
-                </div>
-            </div>
-        `;
+    // Convert the post object to JSON
+    var postJSON = JSON.stringify(post);
 
-        // Append post to posts container
-        var postsContainer = document.getElementById('postsContainer');
-        postsContainer.appendChild(postContainer);
+    // Store the post JSON in local storage with the category as the key
+    localStorage.setItem(category, postJSON);
 
-        // Add additional classes for styling
-        postContainer.querySelector('.post__thumbnail').classList.add('featured');
-        postContainer.querySelector('.post__author').classList.add('featured');
-    }
+    // Redirect to the travel.html page with the post data as URL parameters
+    window.location.href = "travel.html?post=" + encodeURIComponent(postJSON);
+}
+
 </script>
-
 <script src="smain.js"></script>
 
 </body>

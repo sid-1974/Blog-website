@@ -10,6 +10,8 @@ const openNav = () =>{
 
 }
 //close nav dropdown..
+
+
 const closeNav = () =>{
     navItems.style.display = 'none';
     openNavBtn.style.display = 'inline-block';
@@ -26,6 +28,7 @@ const hidesidebarBtn =document.querySelector('#hide__sidebar-btn');
 
 
 //show sidebar on small devices
+
 const showsidebar = () => {
     sidebar.style.left = '0';
     showsidebarBtn.style.display = 'none';
@@ -58,20 +61,22 @@ function highlight(){
 
 
 
-const text = document.getElementsByTagName(body);
+// const text = document.getElementsByTagName(body);
 
-function searchbtn(){
-    let  input = document.getElementById("inputsearch").value;
+// function searchbtn(){
+//     let  input = document.getElementById("inputsearch").value;
 
-    if(input !== "" ){
-        let regExp = new RegExp(input,"gi");
-        text.innerHTML = (text.textcontent).replace(regExp,"<mark >$&</mark>");
-    }
-}
+//     if(input !== "" ){
+//         let regExp = new RegExp(input,"gi");
+//         text.innerHTML = (text.textcontent).replace(regExp,"<mark >$&</mark>");
+//     }
+// }
 
 
 
-//Subscribe functionality----///
+//Subscribe functionality----Backend///
+
+
 
 function submitForm() {
     var firstName = document.getElementById("firstName").value;
@@ -100,9 +105,13 @@ function submitForm() {
 
     emailjs.send("service_3w1pquk", "template_ir547d8", templateParams)
         .then(function(response) {
-            alert('Comments submitted successfully!');
+            alert('Subscribed!!');
         }, function(error) {
             console.error('Error:', error);
-            alert('Comments submission failed!');
+            alert(' failed!!');
         });
 }
+
+//add post -------------------backend
+
+
